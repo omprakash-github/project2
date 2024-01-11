@@ -7,16 +7,17 @@ let button = document.querySelectorAll("button");
 for (let i = 0; i < button.length; i++) {
   button[i].addEventListener("click", function () {
     var Buttonlist = this.innerHTML;
-   makesound(Buttonlist);
-  
+    buttonAnimation(Buttonlist);
+    makesound(Buttonlist);
   });
 }
-document.addEventListener("keypress",function(event)
-{
+document.addEventListener("keypress", function (event) {
+ 
   makesound(event.key);
-})
-function makesound(key)
-{
+  buttonAnimation(event.key);
+
+});
+function makesound(key) {
   switch (key) {
     case "w": {
       let music = new Audio("sounds/crash.mp3");
@@ -48,12 +49,19 @@ function makesound(key)
       music.play();
       break;
     }
-    case "l":
-      {
-        let music = new Audio("sounds/tom-4.mp3");
-        music.play();
-        break;
-      }
-  }
+    case "l": {
+      let music = new Audio("sounds/tom-4.mp3");
+      music.play();
+      break;
+    }
+  }s
+}
+function buttonAnimation(value) {
+  var activeButton = document.querySelector("."+ value);
+  console.log(activeButton)
+  activeButton.classList.add("pressed");
+setTimeout(function(){
+  activeButton.classList.remove("pressed");
 
+},1000);
 }
